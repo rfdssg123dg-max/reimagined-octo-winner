@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юридичні консультації та законодавство</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333333; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background-color: #1e3a8a; color: #ffffff; text-align: center; padding: 40px 20px; border-bottom: 5px solid #d97706; }
+        .facebook-section { background-color: #ffffff; border-radius: 8px; padding: 30px; margin: 30px 0; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+        
+        /* Стиль кнопки: спочатку вона виглядає неактивною */
+        .btn-messenger { 
+            display: inline-block; background-color: #a0aec0; color: #ffffff; text-decoration: none; 
+            padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border-radius: 5px; 
+            pointer-events: none; /* Забороняє клік */
+            transition: background-color 0.3s ease;
+        }
+        .btn-messenger.active { background-color: #0084ff; pointer-events: auto; }
+        .btn-messenger.active:hover { background-color: #006ecf; }
+
+        .admin-panel { background-color: #e5e7eb; padding: 20px; border-radius: 6px; margin-top: 25px; text-align: left; }
+        .admin-panel input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 10px; box-sizing: border-box; }
+        .admin-panel button { padding: 10px 20px; background-color: #d97706; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; font-weight: bold; }
+
+        .law-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .law-card { background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); border-top: 4px solid #1e3a8a; }
+        .btn-law { display: block; text-align: center; border: 2px solid #1e3a8a; color: #1e3a8a; text-decoration: none; padding: 10px; font-weight: bold; border-radius: 5px; margin-top: 15px; }
+        .btn-law:hover { background-color: #1e3a8a; color: #ffffff; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Юридичні консультації</h1>
+            <p>Професійна допомога через Messenger</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="facebook-section">
+            <h2>Отримати консультацію</h2>
+            <p>Введіть нікнейм та натисніть кнопку, щоб активувати чат:</p>
+            
+            <a id="fb-link" href="#" target="_blank" class="btn-messenger">Написати у Messenger</a>
+            
+            <div class="admin-panel">
+                <label for="fb-url"><strong>Введіть нікнейм вашої сторінки Facebook:</strong></label>
+                <input type="text" id="fb-url" placeholder="наприклад: legal.page">
+                <button onclick="updateLink()">Зберегти посилання</button>
+            </div>
+        </section>
+
+        </div>
+
+    <script>
+        function updateLink() {
+            var input = document.getElementById('fb-url').value.trim();
+            var btn = document.getElementById('fb-link');
+            
+            if (input !== "") {
+                var cleanUsername = input.replace("https://www.facebook.com/", "").replace("/", "");
+                btn.href = "https://m.me/" + cleanUsername;
+                btn.classList.add('active'); // Робимо кнопку синьою та активною
+                btn.innerText = "Перейти до чату";
+                alert("Посилання оновлено! Кнопка готова до роботи.");
+            } else {
+                alert("Будь ласка, введіть коректний нікнейм.");
+            }
+        }
+    </script>
+</body>
+</html>
